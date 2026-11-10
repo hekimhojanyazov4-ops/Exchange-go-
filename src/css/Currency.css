@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+}
+
+/* =========================
+   2. MAIN CONTAINER
+========================= */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 20px;
+
+    background-image: url("../assets/money.avif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* =========================
+   3. CURRENCY BOX
+========================= */
+
+.currency-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: 550px;
+
+    padding: 30px;
+
+    border: 1px solid rgba(192, 192, 192, 0.615);
+    border-radius: 12px;
+
+    background: linear-gradient(transparent, white);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   4. TITLE
+========================= */
+
+.title {
+    text-align: center;
+    color: rgb(102, 61, 239);
+    margin-bottom: 25px;
+
+    font-size: clamp(22px, 4vw, 32px);
+}
+
+/* =========================
+   5. CURRENCY CONTAINER
+========================= */
+
+.currency-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    gap: 15px;
+}
+
+.from-currency,
+.to-currency {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+/* =========================
+   6. INPUTS
+========================= */
+
+#from-currency-input,
+#to-currency-input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid silver;
+    border-radius: 5px;
+
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#from-currency-input:focus,
+#to-currency-input:focus {
+    outline: 3px solid rgba(11, 203, 142, 0.3);
+    border-color: #0bcb8e;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+
+/* =========================
+   7. BUTTON
+========================= */
+
+.currency-change-btn {
+    width: 100%;
+    max-width: 180px;
+
+    height: 42px;
+    margin-top: 20px;
+
+    background-color: rgb(0, 119, 255);
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.currency-change-btn:hover {
+    background-color: rgb(0, 95, 210);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   8. TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+    .currency-box {
+        max-width: 480px;
+        padding: 25px;
+    }
+
+    .currency-container {
+        gap: 12px;
+    }
+}
+
+/* =========================
+   9. MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .currency-box {
+        width: 100%;
+        padding: 20px 15px;
+    }
+
+    .currency-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .from-currency,
+    .to-currency {
+        width: 100%;
+    }
+
+    .currency-change-btn {
+        max-width: 100%;
+    }
+}
+
+/* =========================
+   10. SMALL MOBILE
+========================= */
+
+@media (max-width: 320px) {
+
+    .currency-box {
+        padding: 15px 10px;
+    }
+
+    .title {
+        font-size: 21px;
+    }
+
+    #from-currency-input,
+    #to-currency-input {
+        padding: 9px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+/* ============================
+   ERROR MESSAGE
+============================ */
+
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+
+    background-color: #ff0011dc;
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    animation: errorAnimation 0.3s ease;
+}
+
+/* Error icon */
+
+.error-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 24px;
+    height: 24px;
+
+    background-color: #830404;
+    color: white;
+
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* Error text */
+
+.error-text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Close button */
+
+.close-error {
+    border: none;
+    background: transparent;
+
+    color: #be123c;
+    font-size: 23px;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.close-error:hover {
+    transform: scale(1.2);
+}
+
+/* Animation */
+
+@keyframes errorAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsive */
+
+@media (max-width: 480px) {
+    .error-message {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .error-text {
+        font-size: 12px;
+    }
+}
+
+
+
+.currency-icon {
+    flex-shrink: 0;
+    color: #4f46e5;
+}
+
+.from-currency,
+.to-currency {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.swap-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: transform 0.4s ease, background 0.2s;
+}
+
+.swap-btn:hover {
+    background: rgba(79, 70, 229, 0.1);
+    transform: rotate(180deg);
+}
+
+.currency-change-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.close-error {
+    display: flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
