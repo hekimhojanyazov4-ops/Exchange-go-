@@ -24,7 +24,10 @@ import "../css/Currency.css";
 // const BASE_URL =
 //     "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_ymGs4zySDeLtA5VdGlC5Z5Za0SAwoy41K1joo4dw";
 
-const BASE_URL = `${import.meta.env.API_URL}?apikey=${import.meta.env.API_KEY}`;
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY
+
+const BASE_URL = `${API_URL}?apikey=${API_KEY}`;
 
 const currencyIcons = {
     USD: DollarSign,
