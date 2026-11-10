@@ -19,11 +19,10 @@ import {
 
 import "../css/Currency.css";
 
-const BASE_URL = "http://localhost:3005/data/";
+// const BASE_URL = "http://localhost:3005/data/";
 
-// =====================================
-// CURRENCY ICON MAPPING
-// =====================================
+const BASE_URL =
+    "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_ymGs4zySDeLtA5VdGlC5Z5Za0SAwoy41K1joo4dw";
 
 const currencyIcons = {
     USD: DollarSign,
@@ -72,9 +71,7 @@ const CurrencyIcon = ({ code, size = 22 }) => {
     return <Icon size={size} className="currency-icon" />;
 };
 
-// =====================================
-// MAIN CURRENCY COMPONENT
-// =====================================
+
 
 const Currency = () => {
     // Currency states
@@ -83,17 +80,12 @@ const Currency = () => {
     const [toCurrency, setToCurrency] = useState("TRY");
     const [result, setResult] = useState("0");
 
-    // API states
     const [currencies, setCurrencies] = useState([]);
     const [rates, setRates] = useState({});
 
-    // UI states
+
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
-
-    // =====================================
-    // FETCH CURRENCIES
-    // =====================================
 
     useEffect(() => {
         const getCurrencies = async () => {
@@ -102,7 +94,7 @@ const Currency = () => {
 
                 const response = await axios.get(BASE_URL);
 
-                // Support nested and direct API responses
+              
                 const currencyData = response.data?.data ?? response.data;
 
                 if (
@@ -113,7 +105,7 @@ const Currency = () => {
                     throw new Error("Invalid currency API response.");
                 }
 
-                // Convert object into array
+               
                 const currencyList = Object.entries(currencyData).map(
                     ([code, rate]) => ({
                         code,
@@ -121,7 +113,7 @@ const Currency = () => {
                     }),
                 );
 
-                // Validate currency rates
+             
                 if (
                     currencyList.length === 0 ||
                     currencyList.some(
@@ -134,7 +126,7 @@ const Currency = () => {
                     throw new Error("Invalid currency rates.");
                 }
 
-                // Save currencies and rates
+               
                 setCurrencies(currencyList);
                 setRates(currencyData);
             } catch (error) {
@@ -159,10 +151,7 @@ const Currency = () => {
         getCurrencies();
     }, []);
 
-    // =====================================
-    // CURRENCY CONVERSION
-    // =====================================
-
+    
     const exchange = () => {
         try {
             setError("");
@@ -181,7 +170,7 @@ const Currency = () => {
                 throw new Error("Currency rates are unavailable.");
             }
 
-            // Conversion formula
+           
             const convertedResult = (
                 (numericAmount * rates[toCurrency]) /
                 rates[fromCurrency]
@@ -195,9 +184,7 @@ const Currency = () => {
         }
     };
 
-    // =====================================
-    // SWAP CURRENCIES
-    // =====================================
+   
 
     const swapCurrencies = () => {
         setFromCurrency(toCurrency);
@@ -207,16 +194,14 @@ const Currency = () => {
         setError("");
     };
 
-    // =====================================
-    // RENDER
-    // =====================================
+    
 
     return (
         <div className="container">
             <div className="currency-box">
                 <h2 className="title">Exchange go</h2>
 
-                {/* ERROR MESSAGE */}
+              
 
                 {error && (
                     <div className="error-message" role="alert">
@@ -234,10 +219,10 @@ const Currency = () => {
                     </div>
                 )}
 
-                {/* CURRENCY CONTAINER */}
+               
 
                 <div className="currency-container">
-                    {/* FROM CURRENCY */}
+                  
 
                     <div className="from-currency">
                         <CurrencyIcon code={fromCurrency} />
@@ -267,7 +252,7 @@ const Currency = () => {
                         </select>
                     </div>
 
-                    {/* SWAP BUTTON */}
+                  
 
                     <button
                         className="swap-btn"
@@ -278,7 +263,7 @@ const Currency = () => {
                         <ArrowLeftRight size={22} />
                     </button>
 
-                    {/* TO CURRENCY */}
+                   
 
                     <div className="to-currency">
                         <CurrencyIcon code={toCurrency} />
@@ -308,7 +293,7 @@ const Currency = () => {
                     </div>
                 </div>
 
-                {/* EXCHANGE BUTTON */}
+             
 
                 <button
                     onClick={exchange}
