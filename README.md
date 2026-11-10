@@ -110,7 +110,7 @@ For local development, JSON Server can provide the exchange-rate data.
 Example endpoint:
 
 ```text
-http://localhost:3005/data/
+https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_ymGs4zySDeLtA5VdGlC5Z5Za0SAwoy41K1joo4dw
 ```
 
 ## Currency Conversion Formula
